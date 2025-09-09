@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>B2B向けMeta広告｜静止画3＋15秒を48hで即納</title>
-  <meta name="description" content="B2B向けMeta広告の静止画3枚＋15秒動画1本を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
-  <meta property="og:title" content="B2B向けMeta広告｜静止画3＋15秒を48hで即納">
+  <title>B2B向けMeta広告｜静止画3＋を48hで即納</title>
+  <meta name="description" content="B2B向けMeta広告の静止画3枚＋動画1本を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
+  <meta property="og:title" content="B2B向けMeta広告｜静止画3＋を48hで即納">
   <meta property="og:description" content="文案つき・審査配慮・即納。ABテストの弾が足りないを48時間で解消。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/ogp.png"><!-- TODO: 差し替え -->
@@ -30,7 +30,7 @@
     .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.16)}
     .btn:hover{filter:brightness(1.05)}
     .hero{padding:64px 0 24px}
-    .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+    .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
     .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(90,167,255,.14);color:#cfe5ff;border:1px solid rgba(90,167,255,.35);padding:6px 10px;border-radius:999px;font-size:12px}
     h1{font-size:40px;line-height:1.2;margin:14px 0 10px}
     .lead{color:var(--muted);font-size:16px}
@@ -125,6 +125,14 @@
       .sticky-cta{display:block}
       h1{font-size:34px}
     }
+    /* --- adjustments for hero preview size & one-line texts on mobile --- */
+    .hero .wrap .mock{ aspect-ratio:4/3; max-height:420px; }
+    @media (max-width: 960px){
+      .hero h1{ font-size:24px; white-space:nowrap; }
+      #privacy h2{ white-space:nowrap; }
+      .sticky-cta .container div{ white-space:nowrap; }
+      .btn{ white-space:nowrap; }
+    }
   </style>
   <!-- 計測（公開前準備）：
     1) GA4: 以下の計測コードの G-XXXX を差し替えて有効化
@@ -170,8 +178,8 @@
       <div class="container wrap">
         <div>
           <span class="badge">48–72hで即納｜文案つき・審査配慮</span>
-          <h1>ABテストの弾が足りない？<br>静止画<strong>3</strong>＋<strong>15秒</strong>を<strong>48h</strong>で。</h1>
-          <p class="lead">B2B特化のフック設計で、今すぐ回せるMeta広告クリエイティブを提供します。Light/Standard/Proの3プラン。PNG/MP4と広告文、入稿メモまで一式納品。</p>
+          <h1>ABテストの弾が足りない？ 静止画<strong>3</strong>枚を<strong>48h</strong>で。</h1>
+          <p class="lead">B2B特化のフック設計で、今すぐ回せるMeta広告クリエイティブを提供します。Light/Standard/Proの3プラン。PNGと広告文、入稿メモまで一式納品。</p>
           <div class="cta-row">
             <a class="btn" href="#contact">無料5分相談を予約</a>
             <a class="btn secondary" href="#plans">料金プランを見る</a>
@@ -185,7 +193,7 @@
       <div class="container">
         <h2>サービス概要</h2>
         <div class="features">
-          <div class="card"><h3>早い</h3><p class="muted">静止画3枚＋15秒1本を最短48hで納品。素材が少なくてもテンプレで進行。</p></div>
+          <div class="card"><h3>早い</h3><p class="muted">静止画3枚を最短48hで納品。素材が少なくてもテンプレで進行。</p></div>
           <div class="card"><h3>効く</h3><p class="muted">数値証拠/比較優位/限定オファーの3型でフック設計。ABの弾を短時間で量産。</p></div>
           <div class="card"><h3>安全</h3><p class="muted">誇大表現ガード＆根拠明記。審査配慮の入稿メモ付き。</p></div>
         </div>
@@ -201,7 +209,7 @@
           <div class="work"><img src="assets/works/work3.jpg" alt="作例C"></div>
           <div class="work"><img src="assets/works/work4.jpg" alt="作例D（サムネ）"></div>
         </div>
-        <p class="muted" style="margin-top:10px">※ 実案件公開前につきダミーを表示。納品時はPNG/MP4でお渡しします。</p>
+        <p class="muted" style="margin-top:10px">※ 実案件公開前につきダミーを表示。納品時はPNGでお渡しします。</p>
       </div>
     </section>
 
@@ -214,7 +222,7 @@
             <h3>Light</h3>
             <p class="price">¥25,000</p>
             <ul>
-              <li>静止画3＋15秒×1</li>
+              <li>静止画3＋×1</li>
               <li>文案3種／修正1回</li>
               <li>納期：48–72h</li>
             </ul>
@@ -226,7 +234,7 @@
             <p class="price">¥35,000</p>
             <ul>
               <li>Light＋静止画AB差分2枚</li>
-              <li>動画テロップ差分/広告文5本</li>
+              <li>/広告文5本</li>
               <li>納期：〜48h</li>
             </ul>
             <a href="#contact" class="btn">このプランで相談</a>
@@ -254,7 +262,7 @@
           <div class="card step"><div class="num">1</div><h3>依頼</h3><p class="muted">フォーム送信 or 5分相談。目的/KPI/期限を共有。</p></div>
           <div class="card step"><div class="num">2</div><h3>素材回収</h3><p class="muted">ロゴ/実績/NG表現/カラー指定など。</p></div>
           <div class="card step"><div class="num">3</div><h3>制作</h3><p class="muted">静止画→動画の順に制作。1回修正込み。</p></div>
-          <div class="card step"><div class="num">4</div><h3>納品</h3><p class="muted">PNG/MP4/文案/入稿メモをお渡し。</p></div>
+          <div class="card step"><div class="num">4</div><h3>納品</h3><p class="muted">PNG/文案/入稿メモをお渡し。</p></div>
         </div>
       </div>
     </section>
@@ -369,7 +377,7 @@
 
   <div class="sticky-cta" aria-hidden="true">
     <div class="container">
-      <div>静止画3＋15秒、最短48hで納品</div>
+      <div>静止画3＋、最短48hで納品</div>
       <a class="btn" href="#contact">見積り/相談</a>
     </div>
   </div>
