@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>B2B向けMeta広告｜静止画3＋を48hで即納</title>
-  <meta name="description" content="B2B向けMeta広告の静止画3枚＋動画1本を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
-  <meta property="og:title" content="B2B向けMeta広告｜静止画3＋を48hで即納">
+  <title>B2B向けMeta広告｜静止画3枚を48hで即納</title>
+  <meta name="description" content="B2B向けMeta広告の静止画3枚を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
+  <meta property="og:title" content="B2B向けMeta広告｜静止画3枚を48hで即納">
   <meta property="og:description" content="文案つき・審査配慮・即納。ABテストの弾が足りないを48時間で解消。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/ogp.png"><!-- TODO: 差し替え -->
@@ -30,7 +30,7 @@
     .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.16)}
     .btn:hover{filter:brightness(1.05)}
     .hero{padding:64px 0 24px}
-    .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
     .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(90,167,255,.14);color:#cfe5ff;border:1px solid rgba(90,167,255,.35);padding:6px 10px;border-radius:999px;font-size:12px}
     h1{font-size:40px;line-height:1.2;margin:14px 0 10px}
     .lead{color:var(--muted);font-size:16px}
@@ -108,25 +108,35 @@
     .lightbox img{ max-width:min(92vw,1200px); max-height:92vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
     .lightbox-close{ position:absolute; top:16px; right:16px; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:8px 12px; font-size:18px; cursor:pointer; }
 
-    /* Mobile navの崩れ対策 */
+    /* Mobile navの崩れ対策＋モバイル最適化 */
     @media (max-width: 960px){
       nav{ flex-wrap: wrap; }
       .brand{ flex:1 0 auto; }
       .nav-links{ order:2; width:100%; overflow-x:auto; white-space:nowrap; gap:12px; padding:6px 0 4px; }
       .nav-links a{ display:inline-block; white-space:nowrap; }
-      .nav-links .btn{ padding:8px 12px; font-size:14px; }
-    }
-      .hero .wrap{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr}
-      .works{grid-template-columns:1fr 1fr}
-      .pricing{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr 1fr}
-      .contact{grid-template-columns:1fr}
-      .sticky-cta{display:block}
-      h1{font-size:34px}
+      .nav-links .btn{ padding:8px 12px; font-size:14px; white-space:nowrap; }
+
+      /* layout */
+      .hero .wrap{ grid-template-columns:1fr; align-items:flex-start; }
+      section{ padding:32px 0; }
+      h2{ font-size:22px; margin:0 0 12px; }
+      .features{ grid-template-columns:1fr; }
+      .pricing{ grid-template-columns:1fr; }
+      .steps{ grid-template-columns:1fr 1fr; }
+      .contact{ grid-template-columns:1fr; }
+      .sticky-cta{ display:block; }
+
+      /* one-line tweaks */
+      .hero h1{ font-size:24px; white-space:nowrap; }
+      #privacy h2{ white-space:nowrap; }
+      .sticky-cta .container div{ white-space:nowrap; font-size:14px; }
+      .btn{ white-space:nowrap; }
+
+      /* preview */
+      .hero .wrap .mock{ max-height:280px; }
     }
     /* --- adjustments for hero preview size & one-line texts on mobile --- */
-    .hero .wrap .mock{ aspect-ratio:4/3; max-height:420px; }
+    .hero .wrap .mock{ aspect-ratio:4/3; max-height:360px; }
     @media (max-width: 960px){
       .hero h1{ font-size:24px; white-space:nowrap; }
       #privacy h2{ white-space:nowrap; }
@@ -205,9 +215,9 @@
         <h2>作例（ダミー）</h2>
         <div class="works">
           <div class="work"><img src="assets/works/factory_1024.png" alt="作例A"></div>
-          <div class="work"><img src="assets/works/work2.jpg" alt="作例B"></div>
-          <div class="work"><img src="assets/works/work3.jpg" alt="作例C"></div>
-          <div class="work"><img src="assets/works/work4.jpg" alt="作例D（サムネ）"></div>
+          <div class="work"><img src="assets/works/factory_1024.png" alt="作例B"></div>
+          <div class="work"><img src="assets/works/factory_1024.png" alt="作例C"></div>
+          <div class="work"><img src="assets/works/factory_1024.png" alt="作例D（サムネ）"></div>
         </div>
         <p class="muted" style="margin-top:10px">※ 実案件公開前につきダミーを表示。納品時はPNGでお渡しします。</p>
       </div>
@@ -222,7 +232,7 @@
             <h3>Light</h3>
             <p class="price">¥25,000</p>
             <ul>
-              <li>静止画3＋×1</li>
+              <li>静止画3</li>
               <li>文案3種／修正1回</li>
               <li>納期：48–72h</li>
             </ul>
@@ -234,7 +244,7 @@
             <p class="price">¥35,000</p>
             <ul>
               <li>Light＋静止画AB差分2枚</li>
-              <li>/広告文5本</li>
+              <li>広告文5本</li>
               <li>納期：〜48h</li>
             </ul>
             <a href="#contact" class="btn">このプランで相談</a>
@@ -261,7 +271,7 @@
         <div class="steps">
           <div class="card step"><div class="num">1</div><h3>依頼</h3><p class="muted">フォーム送信 or 5分相談。目的/KPI/期限を共有。</p></div>
           <div class="card step"><div class="num">2</div><h3>素材回収</h3><p class="muted">ロゴ/実績/NG表現/カラー指定など。</p></div>
-          <div class="card step"><div class="num">3</div><h3>制作</h3><p class="muted">静止画→動画の順に制作。1回修正込み。</p></div>
+          <div class="card step"><div class="num">3</div><h3>制作</h3><p class="muted">静止画を順に制作。1回修正込み。</p></div>
           <div class="card step"><div class="num">4</div><h3>納品</h3><p class="muted">PNG/文案/入稿メモをお渡し。</p></div>
         </div>
       </div>
@@ -377,7 +387,7 @@
 
   <div class="sticky-cta" aria-hidden="true">
     <div class="container">
-      <div>静止画3＋、最短48hで納品</div>
+      <div>静止画3枚、最短48hで納品</div>
       <a class="btn" href="#contact">見積り/相談</a>
     </div>
   </div>
