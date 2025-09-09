@@ -74,14 +74,21 @@
     .sticky-cta{position:fixed;inset:auto 0 0 0;background:rgba(13,16,22,.85);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.08);padding:10px;display:none}
     .sticky-cta .container{display:flex;justify-content:space-between;align-items:center;gap:10px}
 
-    /* === Added: preview image, marquee works, step hover gradients === */
+    /* === Added: preview image, marquee works(+swipe), feature tints, step hover gradients, lightbox === */
     .mock{ cursor: zoom-in; }
     .mock img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    /* marquee (左→右に一定速度で流れ続ける) */
-    .works{ display:block; overflow:hidden; }
+    /* Features 視認性UP（stepsと同系色のティント） */
+    .features .card{ transition: background .25s ease, border-color .25s ease, transform .2s ease; }
+    .features .card:hover{ transform: translateY(-2px); }
+    .features .card:nth-child(1){ background:linear-gradient(135deg, rgba(90,167,255,.22), rgba(141,208,255,.08)); border-color:rgba(90,167,255,.45); }
+    .features .card:nth-child(2){ background:linear-gradient(135deg, rgba(77,201,189,.22), rgba(141,208,255,.06)); border-color:rgba(77,201,189,.45); }
+    .features .card:nth-child(3){ background:linear-gradient(135deg, rgba(46,204,113,.22), rgba(77,201,189,.06)); border-color:rgba(46,204,113,.45); }
+
+    /* marquee (左→右に一定速度で流れ続ける) + swipe可 */
+    .works{ display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
     .works .marquee-track{ display:inline-flex; gap:14px; animation: marquee-ltr var(--marquee-speed, 40s) linear infinite; }
-    .works:hover .marquee-track{ animation-play-state: paused; }
+    .works:hover .marquee-track, .works.pause .marquee-track{ animation-play-state: paused; }
     .works .work{ flex:0 0 clamp(220px,25vw,280px); border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.06); background:#0e1117; }
     .work img{ width:100%; height:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
     @keyframes marquee-ltr{ 0%{ transform: translateX(-50%);} 100%{ transform: translateX(0);} }
@@ -101,7 +108,14 @@
     .lightbox img{ max-width:min(92vw,1200px); max-height:92vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
     .lightbox-close{ position:absolute; top:16px; right:16px; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:8px 12px; font-size:18px; cursor:pointer; }
 
+    /* Mobile navの崩れ対策 */
     @media (max-width: 960px){
+      nav{ flex-wrap: wrap; }
+      .brand{ flex:1 0 auto; }
+      .nav-links{ order:2; width:100%; overflow-x:auto; white-space:nowrap; gap:12px; padding:6px 0 4px; }
+      .nav-links a{ display:inline-block; white-space:nowrap; }
+      .nav-links .btn{ padding:8px 12px; font-size:14px; }
+    }
       .hero .wrap{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
       .works{grid-template-columns:1fr 1fr}
@@ -378,30 +392,32 @@
       form.reset();
     });
 
-    // 作例の自動スクロール（左→右）とプレビュー切替
+    // 作例の自動スクロール（左→右）とプレビュー切替 + スワイプ時は一時停止
     const works = document.querySelector('.works');
     const originalItems = Array.from(works.querySelectorAll('.work'));
     const track = document.createElement('div');
     track.className = 'marquee-track';
-    // 元要素を移動してトラックへ
     originalItems.forEach(el => track.appendChild(el));
-    // シームレス化のため複製を追加
     originalItems.forEach(el => track.appendChild(el.cloneNode(true)));
     works.appendChild(track);
 
     const preview = document.getElementById('preview');
-    // デリゲートでクリック→プレビューに反映
     works.addEventListener('click', (e)=>{
       const img = e.target.closest('.work')?.querySelector('img');
       if(!img) return;
-      preview.src = img.src;
-      preview.alt = (img.alt||'作例') + 'のプレビュー';
+      preview.src = img.src; preview.alt = (img.alt||'作例') + 'のプレビュー';
     });
-    // アクセシビリティ
+    // キーボード操作可
     works.querySelectorAll('.work img').forEach((img)=>{
-      img.setAttribute('tabindex','0');
-      img.style.cursor='pointer';
+      img.setAttribute('tabindex','0'); img.style.cursor='pointer';
       img.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); img.click(); } });
+    });
+    // スワイプ/ドラッグ時はアニメーションを一時停止
+    ['pointerdown','touchstart','mousedown','wheel'].forEach(ev=>{
+      works.addEventListener(ev, ()=> works.classList.add('pause'), {passive:true});
+    });
+    ['pointerup','touchend','mouseleave'].forEach(ev=>{
+      works.addEventListener(ev, ()=> setTimeout(()=>works.classList.remove('pause'), 1200), {passive:true});
     });
 
     // ライトボックス（プレビューを中央拡大）
