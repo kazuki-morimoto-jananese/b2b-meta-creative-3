@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>B2B向けMeta広告｜静止画3枚を48hで即納</title>
-  <meta name="description" content="B2B向けMeta広告の静止画3枚を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
-  <meta property="og:title" content="B2B向けMeta広告｜静止画5枚を48hで即納">
+  <title>B2B向けMeta広告｜静止画3＋15秒を48hで即納</title>
+  <meta name="description" content="B2B向けMeta広告の静止画3枚＋15秒動画1本を48–72時間で即納。文案つき／審査配慮／今すぐABテストに投入可能。Light/Standard/Proの3プラン。">
+  <meta property="og:title" content="B2B向けMeta広告｜静止画3＋15秒を48hで即納">
   <meta property="og:description" content="文案つき・審査配慮・即納。ABテストの弾が足りないを48時間で解消。">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/ogp.png"><!-- TODO: 差し替え -->
+  <meta property="og:image" content="assets/ogp.png"><!-- TODO: 差し替え -->
   <meta property="og:url" content="https://example.com/">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="assets/favicon.ico">
   <style>
     :root{
       --bg:#0b0c0f; --panel:#111319; --muted:#9aa4b2; --text:#e6e8ec; --brand:#5aa7ff; --brand-2:#8dd0ff; --ok:#2ecc71; --warn:#f39c12; --danger:#e74c3c;
@@ -36,7 +36,7 @@
     .lead{color:var(--muted);font-size:16px}
     .cta-row{display:flex;gap:12px;margin:18px 0 0}
     .mock{aspect-ratio:4/3;border-radius:var(--radius);background:linear-gradient(135deg,#1a1f2b,#0f1219);border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;position:relative;overflow:hidden}
-    .mock::after{content:"作例プレビュー";color:#6b7785;font-size:14px;letter-spacing:.1em}
+    /* placeholder removed: hero mock now uses <img id="preview"> */
 
     section{padding:48px 0;border-top:1px solid rgba(255,255,255,.06)}
     h2{font-size:28px;margin:0 0 18px}
@@ -73,6 +73,33 @@
 
     .sticky-cta{position:fixed;inset:auto 0 0 0;background:rgba(13,16,22,.85);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.08);padding:10px;display:none}
     .sticky-cta .container{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+    /* === Added: preview image, marquee works, step hover gradients === */
+    .mock{ cursor: zoom-in; }
+    .mock img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* marquee (左→右に一定速度で流れ続ける) */
+    .works{ display:block; overflow:hidden; }
+    .works .marquee-track{ display:inline-flex; gap:14px; animation: marquee-ltr var(--marquee-speed, 40s) linear infinite; }
+    .works:hover .marquee-track{ animation-play-state: paused; }
+    .works .work{ flex:0 0 clamp(220px,25vw,280px); border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.06); background:#0e1117; }
+    .work img{ width:100%; height:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+    @keyframes marquee-ltr{ 0%{ transform: translateX(-50%);} 100%{ transform: translateX(0);} }
+    @media (prefers-reduced-motion: reduce){ .works .marquee-track{ animation: none; } }
+
+    /* steps hover gradient */
+    .steps .card{ transition: background .25s ease, border-color .25s ease, transform .2s ease; border:1px solid rgba(255,255,255,.06); background:var(--panel); }
+    .steps .card:hover{ transform: translateY(-2px); }
+    .steps .card:nth-child(1):hover{ background:linear-gradient(135deg, rgba(90,167,255,.25), rgba(141,208,255,.10)); border-color:rgba(90,167,255,.6); }
+    .steps .card:nth-child(2):hover{ background:linear-gradient(135deg, rgba(77,201,189,.25), rgba(141,208,255,.10)); border-color:rgba(77,201,189,.55); }
+    .steps .card:nth-child(3):hover{ background:linear-gradient(135deg, rgba(46,204,113,.25), rgba(77,201,189,.10)); border-color:rgba(46,204,113,.55); }
+    .steps .card:nth-child(4):hover{ background:linear-gradient(135deg, rgba(243,156,18,.25), rgba(46,204,113,.10)); border-color:rgba(243,156,18,.55); }
+
+    /* lightbox */
+    .lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.72); z-index:1000; }
+    .lightbox.open{ display:flex; }
+    .lightbox img{ max-width:min(92vw,1200px); max-height:92vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
+    .lightbox-close{ position:absolute; top:16px; right:16px; background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:8px 12px; font-size:18px; cursor:pointer; }
 
     @media (max-width: 960px){
       .hero .wrap{grid-template-columns:1fr}
@@ -129,14 +156,14 @@
       <div class="container wrap">
         <div>
           <span class="badge">48–72hで即納｜文案つき・審査配慮</span>
-          <h1>ABテストの弾が足りない？<br>静止画<strong>3</strong>＋<strong></strong>を<strong>48h</strong>で。</h1>
-          <p class="lead">B2B特化のフック設計で、今すぐ回せるMeta広告クリエイティブを提供します。Light/Standard/Proの3プラン。PNGと広告文、入稿メモまで一式納品。</p>
+          <h1>ABテストの弾が足りない？<br>静止画<strong>3</strong>＋<strong>15秒</strong>を<strong>48h</strong>で。</h1>
+          <p class="lead">B2B特化のフック設計で、今すぐ回せるMeta広告クリエイティブを提供します。Light/Standard/Proの3プラン。PNG/MP4と広告文、入稿メモまで一式納品。</p>
           <div class="cta-row">
             <a class="btn" href="#contact">無料5分相談を予約</a>
             <a class="btn secondary" href="#plans">料金プランを見る</a>
           </div>
         </div>
-        <div class="mock" aria-hidden="true"></div>
+        <div class="mock"><img id="preview" src="assets/works/factory_1024.png" alt="作品プレビュー"></div>
       </div>
     </section>
 
@@ -155,12 +182,12 @@
       <div class="container">
         <h2>作例（ダミー）</h2>
         <div class="works">
-          <div class="work"><div class="ph">静止画 A</div></div>
-          <div class="work"><div class="ph">静止画 B</div></div>
-          <div class="work"><div class="ph">静止画 C</div></div>
-          <div class="work"><div class="ph">静止画 D</div></div>
+          <div class="work"><img src="assets/works/factory_1024.png" alt="作例A"></div>
+          <div class="work"><img src="assets/works/work2.jpg" alt="作例B"></div>
+          <div class="work"><img src="assets/works/work3.jpg" alt="作例C"></div>
+          <div class="work"><img src="assets/works/work4.jpg" alt="作例D（サムネ）"></div>
         </div>
-        <p class="muted" style="margin-top:10px">※ 実案件公開前につきダミーを表示。納品時はPNGでお渡しします。</p>
+        <p class="muted" style="margin-top:10px">※ 実案件公開前につきダミーを表示。納品時はPNG/MP4でお渡しします。</p>
       </div>
     </section>
 
@@ -171,9 +198,9 @@
           <div class="card plan">
             <div class="badge-top">最短</div>
             <h3>Light</h3>
-            <p class="price">¥15,000</p>
+            <p class="price">¥25,000</p>
             <ul>
-              <li>静止画3</li>
+              <li>静止画3＋15秒×1</li>
               <li>文案3種／修正1回</li>
               <li>納期：48–72h</li>
             </ul>
@@ -182,10 +209,10 @@
           <div class="card plan" style="border-color:rgba(90,167,255,.6)">
             <div class="badge-top">おすすめ</div>
             <h3>Standard</h3>
-            <p class="price">¥20,000</p>
+            <p class="price">¥35,000</p>
             <ul>
               <li>Light＋静止画AB差分2枚</li>
-              <li>広告文5本</li>
+              <li>動画テロップ差分/広告文5本</li>
               <li>納期：〜48h</li>
             </ul>
             <a href="#contact" class="btn">このプランで相談</a>
@@ -193,9 +220,9 @@
           <div class="card plan">
             <div class="badge-top">拡張</div>
             <h3>Pro</h3>
-            <p class="price">¥35,000</p>
+            <p class="price">¥50,000</p>
             <ul>
-              <li>Standard＋サイズ展開（正方形/縦）×5</li>
+              <li>Standard＋サイズ展開（正方形/縦）</li>
               <li>フック別3構成／ブランドガイド反映</li>
               <li>納期：〜72h</li>
             </ul>
@@ -212,8 +239,8 @@
         <div class="steps">
           <div class="card step"><div class="num">1</div><h3>依頼</h3><p class="muted">フォーム送信 or 5分相談。目的/KPI/期限を共有。</p></div>
           <div class="card step"><div class="num">2</div><h3>素材回収</h3><p class="muted">ロゴ/実績/NG表現/カラー指定など。</p></div>
-          <div class="card step"><div class="num">3</div><h3>制作</h3><p class="muted">静止画を順に制作。1回修正込み。</p></div>
-          <div class="card step"><div class="num">4</div><h3>納品</h3><p class="muted">PNG/文案/入稿メモをお渡し。</p></div>
+          <div class="card step"><div class="num">3</div><h3>制作</h3><p class="muted">静止画→動画の順に制作。1回修正込み。</p></div>
+          <div class="card step"><div class="num">4</div><h3>納品</h3><p class="muted">PNG/MP4/文案/入稿メモをお渡し。</p></div>
         </div>
       </div>
     </section>
@@ -311,6 +338,12 @@
         </div>
       </div>
     </section>
+    <!-- Lightbox (プレビュー拡大) -->
+  <div id="lightbox" class="lightbox" aria-modal="true" role="dialog" aria-hidden="true">
+    <img id="lightbox-img" alt="">
+    <button class="lightbox-close" aria-label="閉じる">×</button>
+  </div>
+
   </main>
 
   <footer class="footer">
@@ -322,7 +355,7 @@
 
   <div class="sticky-cta" aria-hidden="true">
     <div class="container">
-      <div>静止画3、最短48hで納品</div>
+      <div>静止画3＋15秒、最短48hで納品</div>
       <a class="btn" href="#contact">見積り/相談</a>
     </div>
   </div>
@@ -344,6 +377,41 @@
       try{ if(window.fbq) fbq('track','Lead'); }catch(_){}
       form.reset();
     });
+
+    // 作例の自動スクロール（左→右）とプレビュー切替
+    const works = document.querySelector('.works');
+    const originalItems = Array.from(works.querySelectorAll('.work'));
+    const track = document.createElement('div');
+    track.className = 'marquee-track';
+    // 元要素を移動してトラックへ
+    originalItems.forEach(el => track.appendChild(el));
+    // シームレス化のため複製を追加
+    originalItems.forEach(el => track.appendChild(el.cloneNode(true)));
+    works.appendChild(track);
+
+    const preview = document.getElementById('preview');
+    // デリゲートでクリック→プレビューに反映
+    works.addEventListener('click', (e)=>{
+      const img = e.target.closest('.work')?.querySelector('img');
+      if(!img) return;
+      preview.src = img.src;
+      preview.alt = (img.alt||'作例') + 'のプレビュー';
+    });
+    // アクセシビリティ
+    works.querySelectorAll('.work img').forEach((img)=>{
+      img.setAttribute('tabindex','0');
+      img.style.cursor='pointer';
+      img.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); img.click(); } });
+    });
+
+    // ライトボックス（プレビューを中央拡大）
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    function openLightbox(src, alt){ lbImg.src = src; lbImg.alt = alt||''; lightbox.classList.add('open'); }
+    function closeLightbox(){ lightbox.classList.remove('open'); }
+    document.querySelector('.mock').addEventListener('click', ()=> openLightbox(preview.src, preview.alt));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+    lightbox.addEventListener('click', (e)=>{ if(e.target.id==='lightbox' || e.target.classList.contains('lightbox-close')) closeLightbox(); });
 
     // スムーススクロール（内部リンク）
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
